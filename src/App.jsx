@@ -23,6 +23,7 @@ import Headwear from './pages/Headwear.jsx'
 import Footwear from './pages/Footwear.jsx'
 import Accessories from './pages/Accessories.jsx'
 import CategoryGenderPage from './pages/CategoryGenderPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -84,6 +85,8 @@ function App() {
           <Route path="accessories" element={<Accessories />} />
           <Route path="category/:category/:gender" element={<CategoryGenderPage />} />
           <Route path="product/:slug" element={<ProductPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<LoginPage />} />
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

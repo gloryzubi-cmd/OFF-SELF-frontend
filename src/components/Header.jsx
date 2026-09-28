@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useCart } from '../context/cartUtils'
 import { useFavorites } from '../context/favoritesUtils'
 import SearchDrawer from './SearchDrawer'
-import AccountDrawer from './AccountDrawer'
 import FavoritesDrawer from './FavoritesDrawer'
 import logo from '../assets/logo.png'
 
@@ -18,8 +18,8 @@ const NAV_LINKS = [
 function Header() {
   const { openCart, totalItems } = useCart()
   const { openFavorites, totalFavorites } = useFavorites()
+  const navigate = useNavigate()
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isAccountOpen, setIsAccountOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isMenuOpenRef = useRef(isMobileMenuOpen)
   const location = useLocation()
@@ -117,9 +117,9 @@ function Header() {
             </button>
             <button
               type="button"
-              className="lg:hidden text-on-surface-variant hover:text-on-surface transition-colors"
+              className="text-on-surface-variant hover:text-on-surface transition-colors flex items-center"
               aria-label="Account"
-              onClick={() => setIsAccountOpen(true)}
+              onClick={() => navigate('/login')}
             >
               <span className="material-symbols-outlined text-[20px]">
                 person
@@ -200,10 +200,6 @@ function Header() {
       <SearchDrawer
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-      />
-      <AccountDrawer
-        isOpen={isAccountOpen}
-        onClose={() => setIsAccountOpen(false)}
       />
       <FavoritesDrawerWrapper />
     </>
